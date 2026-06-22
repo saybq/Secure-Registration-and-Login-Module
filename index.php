@@ -19,7 +19,7 @@
             </p>
         <?php endif; ?>
 
-        <form action="../../controllers/login.php" method="POST">
+        <form action="" method="POST"> <!--../../controllers/login.php-->
             <div class="mb-4">
                 <label for="username" class="block font-medium mb-1">Username</label>
                 <input 

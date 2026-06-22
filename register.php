@@ -22,7 +22,7 @@
 
         <h4 class="text-center text-2xl font-semibold mb-6">Create Account</h4>
 
-        <form action="../../controllers/register.php" method="POST">
+        <form action="" method="POST"> <!--../../controllers/register.php-->
 
 
             <div class="mb-4">
