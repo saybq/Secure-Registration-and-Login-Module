@@ -44,8 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             } else {
 
-                $message = "Something went wrong. Please try again.";
-                $messageColor = "red";
+                echo "<script>
+                        alert('Something went wrong. Please try again.');
+                        window.location.href = 'login.php';
+                    </script>";
+                    
             }
         }
     }
@@ -110,11 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <p class="text-center mt-4 text-sm">
             Already have an account?
-            <a href="index.php" class="text-blue-600 hover:underline">Login here</a>
+            <a href="login.php" class="text-blue-600 hover:underline">Login here</a>
         </p>
 
     </div>
-
     
 
 </body>
