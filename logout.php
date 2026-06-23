@@ -3,5 +3,8 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: login.php");
+echo "<script>
+        alert('Logged out Succesful!');
+        window.location.href = 'login.php';
+    </script>";
 exit;
