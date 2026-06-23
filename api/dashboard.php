@@ -1,5 +1,13 @@
 <?php
+session_start();
 
+
+if (!isset($_SESSION["user"])) {
+    header("Location: index.php");
+    exit();
+}
+
+$user = $_SESSION["user"];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,7 @@
         <!-- Profile Circle -->
         <div class="flex justify-center">
             <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-3xl font-bold text-gray-700">
-                B
+                <?php echo strtoupper(substr($user["name"], 0, 1)); ?>
             </div>
         </div>
 
@@ -29,12 +37,12 @@
 
             <div>
                 <p class="text-sm text-gray-500">Name</p>
-                <p class="font-semibold">BEUGA JR</p>
+                <p class="font-semibold"><?php echo htmlspecialchars($user["name"]); ?></p>
             </div>
 
             <div>
                 <p class="text-sm text-gray-500">Email</p>
-                <p class="font-semibold">EMAIL@BELUGA.COM</p>
+                <p class="font-semibold"><?php echo htmlspecialchars($user["email"]); ?></p>
             </div>
 
         </div>
