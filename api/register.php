@@ -1,3 +1,58 @@
+<?php
+require_once __DIR__ . '/dbconnection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
+
+    if (empty($name) || empty($email) || empty($password)) {
+            echo "<script>
+                    alert('Missing Credentials');
+                    window.location.href = 'register.php';
+                </script>";
+            exit();
+    } else {
+
+        $check = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+        $check->execute([$email]);
+
+        if ($check->rowCount() > 0) {
+
+            echo "<script>
+                    alert('Email must be UNIQUE!');
+                    window.location.href = 'register.php';
+                </script>";
+            exit();
+
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $stmt = $pdo->prepare(
+                "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+            );
+
+            if ($stmt->execute([$name, $email, $hashedPassword])) {
+
+                 echo "<script>
+                        alert('Registration successful!');
+                        window.location.href = 'index.php';
+                    </script>";
+                exit();
+
+            } else {
+
+                $message = "Something went wrong. Please try again.";
+                $messageColor = "red";
+            }
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +82,7 @@
 
             <div class="mb-4">
                 <label class="block mb-1 font-medium">Full Name</label>
-                <input type="text" name="first_Name" placeholder="John Beluga Doe Jr." required
+                <input type="text" name="name" placeholder="John Beluga Doe Jr." required
                     class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black">
             </div>
 
