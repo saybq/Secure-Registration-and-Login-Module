@@ -11,7 +11,7 @@
 
     <div class="w-full max-w-sm bg-white shadow-lg rounded-xl p-8">
         
-        <h4 class="text-center text-2xl font-semibold mb-6">Login</h4>
+        <h4 class="text-center text-2xl font-semibold mb-6">Login To</h4>
 
         <?php if (isset($_GET['error'])): ?>
             <p class="text-red-600 text-sm mb-3 text-center">
